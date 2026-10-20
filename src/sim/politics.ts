@@ -397,10 +397,15 @@ function holdElection(sim: Simulation) {
   const projTotal = s.gov.parliament.reduce((t, x) => t + x.seats, 0);
   const pid = new Map<number, number>();
   for (const a of adults) if (a.votedFor != null) pid.set(a.votedFor, (pid.get(a.votedFor) ?? 0) + 1);
+  // Viability = who looks like they can win. Past votes and seats count — but so do
+  // organic strength (membership rolls, street power). A hollow incumbent with no
+  // members left can't hide behind last cycle's result; a mass insurgency doesn't
+  // need a seat to look like it could take one.
   const viability = new Map<number, number>(candidates.map((c): [number, number] => [c.id, Math.max(
-    projTotal > 0 ? (s.gov.parliament.find(x => x.factionId === c.id)?.seats ?? 0) / projTotal * 0.6 : 0,
+    projTotal > 0 ? (s.gov.parliament.find(x => x.factionId === c.id)?.seats ?? 0) / projTotal * 0.35 : 0,
     (pid.get(c.id) ?? 0) / Math.max(1, adults.length),
-    (c.members / Math.max(1, adults.length)) * 0.6)]));
+    (c.members / Math.max(1, adults.length)) * 0.9,
+    (c.strength / Math.max(1, adults.length)) * 1.5)]));
   const shares = [...viability.values()].sort((a, b) => b - a);
   const secondShare = Math.max(0.03, shares[1] ?? 0);
   const strategic = p.electoralSystem === 'pr' ? 0 : p.electoralSystem === 'runoff' ? 1.6 : 3.2;

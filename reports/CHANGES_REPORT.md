@@ -219,6 +219,14 @@ four real gaps:
   grievance, `pentUp` rises — contested legitimacy that feeds the next cycle.
 - **Elections ran during martial law.** Scheduled polls are now suspended while
   `gov.martialLaw > 0`.
+- **Duverger lock-in.** Viability was computed from seats (FPTP-inflated) plus
+  last votes (cast under the same strategic pressure) — a closed loop that kept
+  the same top two alternating forever regardless of real support. Viability now
+  also counts membership rolls (`members/adults × 0.9`) and street strength
+  (`strength/adults × 1.5`), while seat share weighs less (0.6→0.35). A hollow
+  incumbent can fall out of the top two; a mass insurgency needs no seats to
+  look viable. Verified: challengers now rotate with membership, and a third
+  party (Commercial League) broke through to govern at y20 in a seed-9 trace.
 
 Verified (`npm run elect -- liberal 7`): d720 produced a 35%–33% result → the
 loser disputed the count, Radical League actually governed four years, then
