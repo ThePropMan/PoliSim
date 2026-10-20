@@ -1,0 +1,282 @@
+﻿
+### anarcom seed1 (last political events)
+  y48.0 The council voted to reintroduce markets and money.
+
+### ancap seed1 (last political events)
+  y8.4 Ivo Longwell founded the Iron Coalition: anarchist centrist.
+  y15.1 Greta Northton founded the Free Brotherhood: moderate centrist.
+  y17.4 Ivo Oakridge now leads the Iron Coalition.
+  y18.3 Pia Fairman founded the Green Circle: anarchist socialist.
+  y18.8 Dina Woodford now leads the Iron Coalition.
+  y19.2 Vera Longbrook now leads the Iron Coalition.
+  y20.6 Bea Thornford founded the Black Party: law-and-order pro-business.
+  y20.7 Quin Stonebrook now leads the Free Brotherhood.
+  y23.3 Ulric Woodford now leads the Green Circle.
+  y25.6 Vera Coldwood now leads the Iron Coalition.
+  y35.4 Quin Thornby now leads the Black Party.
+  y38.1 Emory Ironley now leads the Black Party.
+  y38.8 Sade Redstead now leads the Black Party.
+  y43.7 Cyrus Oakwell founded the United Collective: libertarian socialist, progressive.
+  y47.4 Aren Longbrook now leads the Green Circle.
+  y47.5 Milo Westfield founded the Golden League: moderate pro-business, traditionalist.
+  y48.9 Finn Greenhill now leads the Free Brotherhood.
+  y49.3 Cyrus Coldwick founded the Common Soviet: law-and-order centrist, progressive.
+
+### authcap seed1 (last political events)
+  y37.3 Dax Whiteby now leads the Green Alliance.
+  y38.9 Brin Northford now leads the Green Alliance.
+  y39.0 The regime tightens its grip: new informer networks, censorship and curfews.
+  y41.1 Lise Thornstead now leads the Green Vanguard.
+  y41.2 Freya Weststead now leads the Green Soviet.
+  y41.8 MILITARY COUP! Bastian Eastwick and the guards have seized power. A junta now rules.
+  y41.8 The regime tightens its grip: new informer networks, censorship and curfews.
+  y42.3 The Green Vanguard rallied 21 supporters in the plaza demanding authoritarian centrist, traditionalist policies.
+  y42.3 Guards cracked down on the Green Vanguard rally: 7 arrested.
+  y43.0 Bread riot! 29 hungry citizens looted wealthy homes, 9 arrested.
+  y43.2 Rafe Longbrook now leads the Green Order.
+  y43.9 Aren Ironwell now leads the Free Union.
+  y46.5 The Green Soviet rallied 10 supporters in the plaza demanding law-and-order socialist, traditionalist policies.
+  y46.5 Guards cracked down on the Green Soviet rally: 3 arrested.
+  y46.6 MILITARY COUP! Bastian Eastwick and the guards have seized power. A junta now rules.
+  y46.7 Vane Greenford now leads the Military Junta II.
+  y46.7 The regime tightens its grip: new informer networks, censorship and curfews.
+  y47.1 Bea Redridge now leads the Military Junta.
+  y47.3 The Military Junta II (4 members) joined the Military Junta in a merger.
+  y48.0 Hal Redstead now leads the Green Order.
+  y48.7 Ulric Whiteton now leads the Green Order.
+  y49.1 Bea Irongate now leads the Green Order.
+  y49.1 Bread riot! 41 hungry citizens looted wealthy homes, 12 arrested, 2 shot by guards.
+  y49.7 Nell Redridge now leads the Green Alliance.
+  y49.8 Lise Hartman now leads the Free Union.
+
+### distributist seed1 (last political events)
+  y32.0 No majority ΓÇö a runoff was held between the Iron Collective and the Green Alliance.
+  y32.0 Election: the Iron Collective won with 52% (runoff: Iron Collective 52% vs Green Alliance 48%). Policy will shift law-and-order socialist, traditionalist.
+  y33.8 Zev Westgate now leads the New Commune.
+  y33.9 Brin Thornwell now leads the Green Alliance.
+  y34.2 Zia Thornstead now leads the Iron Collective.
+  y35.3 Nael Redstead now leads the Iron Order.
+  y36.0 No majority ΓÇö a runoff was held between the Iron Collective and the Green Alliance.
+  y36.0 Election: the Iron Collective was re-elected (runoff: Iron Collective 55% vs Green Alliance 45%).
+  y37.2 The Golden Network dissolved.
+  y38.2 Oren Oakbrook now leads the Free Front.
+  y38.3 Cyrus Westby now leads the Iron Collective.
+  y38.3 Tobin Brightfield now leads the Free Front.
+  y38.8 Emory Coldbrook now leads the Green Alliance.
+  y39.9 Cal Thornstead now leads the Liberty Legion.
+  y40.0 No majority ΓÇö a runoff was held between the Iron Collective and the Green Alliance.
+  y40.0 Election: the Iron Collective was re-elected (runoff: Iron Collective 57% vs Green Alliance 43%).
+  y40.1 Oren Oakbrook now leads the New Movement.
+  y40.5 Hal Stonebrook now leads the Green Directorate.
+  y41.8 Brin Redley now leads the New Commune.
+  y44.0 Election: the Iron Collective was re-elected (Iron Collective 63%, Green Alliance 27%, Iron Order 2%, Free Front 2%, New Commune 2%, Liberty Legion 2%, Green Directorate 1%, Golden Party 1%, New Movement 1%).
+  y44.8 Astrid Stonewood now leads the Iron Order.
+  y47.6 Calla Northwood now leads the Golden Party.
+  y47.8 Tess Brightfield now leads the New Movement.
+  y48.0 No majority ΓÇö a runoff was held between the Green Alliance and the Iron Collective.
+  y48.0 Election: the Iron Collective was re-elected (runoff: Green Alliance 40% vs Iron Collective 60%).
+
+### feudal seed1 (last political events)
+  y34.6 Guards cracked down on the Free Guard rally: 18 arrested, 1 killed.
+  y35.0 Bread riot! 38 hungry citizens looted wealthy homes, 10 arrested, 2 shot by guards.
+  y35.4 The Free Collective called a general strike (28 members).
+  y35.4 Guards cracked down on the Free Collective strike: 4 arrested.
+  y35.5 The Free Guard called a general strike (125 members).
+  y35.5 Guards cracked down on the Free Guard strike: 17 arrested.
+  y35.6 Nell Irongate founded the Free Order (underground): law-and-order pro-business, traditionalist.
+  y36.0 The regime tightens its grip: new informer networks, censorship and curfews.
+  y36.3 The Free Guard called a general strike (125 members).
+  y36.3 Guards cracked down on the Free Guard strike: 18 arrested.
+  y36.8 The Free Collective called a general strike (33 members).
+  y36.8 Guards cracked down on the Free Collective strike: 5 arrested.
+  y37.0 The regime tightens its grip: new informer networks, censorship and curfews.
+  y37.3 The Free Guard rallied 91 supporters in the plaza demanding authoritarian centrist, traditionalist policies.
+  y37.3 Guards cracked down on the Free Guard rally: 19 arrested, 3 killed.
+  y37.3 Bread riot! 48 hungry citizens looted wealthy homes, 14 arrested, 2 shot by guards.
+  y37.7 Della Dungate now leads the Free Collective.
+  y37.7 The Free Collective (31 members) joined the Free Guard in a united opposition front.
+  y38.0 The regime tightens its grip: new informer networks, censorship and curfews.
+  y38.2 UPRISING! The Free Guard rose up against the Kingdom with 167 fighters.
+  y38.2 REVOLUTION! The House of Weststead has taken power. A Kingdom is proclaimed under Zev Weststead.
+  y38.8 Bread riot! 27 hungry citizens looted wealthy homes, 5 arrested.
+  y41.1 Dina Longwood now leads the House of Weststead.
+  y42.6 Rhea Redwick founded the United Directorate (underground): authoritarian free-market.
+  y44.0 Sade Fairman now leads the Loyalists of Blackwell.
+
+### liberal seed1 (last political events)
+  y39.6 Bread riot! 28 hungry citizens looted wealthy homes.
+  y39.6 The government announced emergency relief measures in response to the riots.
+  y40.0 Election: the Black Party was re-elected (Black Party 61%, Workers' Brotherhood 35%, New Federation 1%, Iron Vanguard 1%, Iron Guard 1%, United Circle 0%).
+  y41.3 Gael Westgate now leads the Free Society.
+  y42.5 The Iron Vanguard rallied 8 supporters in the plaza demanding law-and-order socialist, traditionalist policies.
+  y42.6 Una Brightmore now leads the Iron Society.
+  y42.6 The New Federation rallied 36 supporters in the plaza demanding libertarian socialist policies.
+  y43.0 Nael Longwood now leads the Iron Vanguard.
+  y43.0 The New Federation called a general strike (74 members).
+  y43.0 The government made concessions to the New Federation.
+  y43.3 The Workers' Brotherhood rallied 19 supporters in the plaza demanding moderate centrist policies.
+  y43.3 Bread riot! 35 hungry citizens looted wealthy homes.
+  y43.3 The government announced emergency relief measures in response to the riots.
+  y44.0 Election: the Workers' Brotherhood won with 48% (Workers' Brotherhood 48%, Black Party 38%, New Federation 8%, Iron Guard 2%, Iron Vanguard 2%, Popular Guild 1%, Iron Society 0%). Policy will shift moderate centrist.
+  y44.6 The New Federation rallied 40 supporters in the plaza demanding moderate socialist policies.
+  y45.0 Leader Zev Oakwell has died. Juna Ironbrook takes power.
+  y45.0 Juna Ironbrook now leads the Workers' Brotherhood.
+  y45.4 The New Federation rallied 36 supporters in the plaza demanding moderate socialist policies.
+  y45.4 The government made concessions to the New Federation.
+  y45.8 Cyrus Stoneton now leads the Iron Guard.
+  y48.0 Leof Ironridge now leads the Popular Guild.
+  y48.0 Election: the Workers' Brotherhood was re-elected (Workers' Brotherhood 66%, Black Party 29%, New Federation 3%, Iron Guard 1%, Popular Guild 1%, Iron Vanguard 0%).
+  y48.2 Anselm Stonewood now leads the United Circle.
+  y48.6 Leader Juna Ironbrook has died. Dax Oakwell takes power.
+  y48.6 Dax Oakwell now leads the Workers' Brotherhood.
+
+### marketsoc seed1 (last political events)
+  y49.0 Elin Whitewick now leads the People's Coalition.
+  y49.0 The New Union rallied 36 supporters in the plaza demanding moderate socialist policies.
+  y49.0 The government made concessions to the New Union.
+  y49.0 The Patriotic Collective rallied 14 supporters in the plaza demanding law-and-order communist policies.
+  y49.0 The government made concessions to the Patriotic Collective.
+  y49.1 Wes Thornwell now leads the Patriotic Collective.
+  y49.1 The Liberty Union called a general strike (39 members).
+  y49.1 The government made concessions to the Liberty Union.
+  y49.3 The New Union called a general strike (45 members).
+  y49.3 The Liberty Union called a general strike (37 members).
+  y49.5 The Common Soviet rallied 10 supporters in the plaza demanding libertarian communist policies.
+  y49.5 The government made concessions to the Common Soviet.
+  y49.5 The Patriotic Collective called a general strike (16 members).
+  y49.6 Pia Whitehill now leads the People's Coalition.
+  y49.6 The Liberty Union called a general strike (36 members).
+  y49.6 The government made concessions to the Liberty Union.
+  y49.6 The Golden Society called a general strike (12 members).
+  y49.8 The New Union called a general strike (43 members).
+  y49.8 The government made concessions to the New Union.
+  y49.8 The Common Soviet rallied 8 supporters in the plaza demanding libertarian communist policies.
+  y49.8 The government made concessions to the Common Soviet.
+  y49.8 The People's Coalition rallied 14 supporters in the plaza demanding libertarian communist policies.
+  y49.8 The government made concessions to the People's Coalition.
+  y50.0 The Golden Assembly called a general strike (31 members).
+  y50.0 The government made concessions to the Golden Assembly.
+
+### minarchy seed1 (last political events)
+  y36.9 Calla Northwood now leads the Golden Circle.
+  y37.3 Lise Redwell founded the People's Federation: libertarian communist, traditionalist.
+  y37.3 Anselm Greenhill now leads the People's Front.
+  y37.5 Bread riot! 27 hungry citizens looted wealthy homes.
+  y37.5 The government announced emergency relief measures in response to the riots.
+  y37.9 Nell Fairwood now leads the Common Brotherhood.
+  y39.3 The People's Federation dissolved.
+  y39.3 Sade Redstead now leads the Iron Commune.
+  y40.0 The People's Front rallied 18 supporters in the plaza demanding moderate socialist policies.
+  y40.0 Election: the Red Movement won with 33% (Red Movement 33%, Black Party 32%, People's Front 9%, Iron Party 8%, Free Party 7%, Radical Society 4%, Iron Commune 3%, Golden Circle 2%, Common Brotherhood 2%). Policy will shift libertarian centrist.
+  y40.3 Finn Thornman founded the Iron Guard: law-and-order free-market.
+  y41.6 Emory Hartley now leads the Radical Society.
+  y41.8 Brin Woodhill now leads the Black Party.
+  y42.3 Wren Greenby now leads the Black Party.
+  y42.5 The Common Brotherhood rallied 9 supporters in the plaza demanding libertarian communist policies.
+  y42.5 The government made concessions to the Common Brotherhood.
+  y43.1 Pia Thornby now leads the Radical Society.
+  y43.2 Zia Longwell now leads the Red Movement.
+  y44.0 Election: the Red Movement was re-elected (Red Movement 69%, Black Party 29%, Free Party 2%, Iron Commune 0%, Golden Circle 0%).
+  y44.4 Oren Longwood now leads the Iron Commune.
+  y45.6 Faye Hartwood now leads the Common Brotherhood.
+  y48.0 Rhea Westfield now leads the Common Brotherhood.
+  y48.0 Election: the Red Movement was re-elected (Red Movement 49%, Black Party 42%, People's Front 3%, Common Brotherhood 2%, Free Party 1%, Radical Society 1%, Iron Commune 1%, Golden Circle 1%).
+  y49.7 Leader Zia Longwell has died. Dorin Coldwood takes power.
+  y49.7 Dorin Coldwood now leads the Red Movement.
+
+### socdem seed1 (last political events)
+  y32.0 Election: the United Assembly was re-elected (United Assembly 35%, Radical Alliance 16%, United Soviet 11%, Red Movement 11%, Iron Legion 9%, Green Directorate 8%, New League 5%, Red Federation 3%, Common Soviet 1%).
+  y32.4 Ulric Ironwood now leads the United Assembly.
+  y33.1 Zev Fairhill now leads the United Soviet.
+  y33.1 Cal Hartwood now leads the Iron Legion.
+  y34.1 Leof Longbrook now leads the Radical Alliance.
+  y34.6 Elin Brightfield founded the Popular Society: moderate pro-business, progressive.
+  y35.7 Finn Longbrook now leads the United Assembly.
+  y36.0 Coalition government formed: United Assembly + Green Directorate + United Soviet (United Assembly 38%, Radical Alliance 13%, Red Movement 11%, Green Directorate 10%, United Soviet 9%, Iron Legion 9%, New League 6%, Red Federation 4%).
+  y36.0 Election: the United Assembly was re-elected (United Assembly 38%, Radical Alliance 13%, Red Movement 11%, Green Directorate 10%, United Soviet 9%, Iron Legion 9%, New League 6%, Red Federation 4%).
+  y37.3 Brin Blackgate now leads the Iron Legion.
+  y40.0 Coalition government formed: United Assembly + Green Directorate + Red Movement (United Assembly 37%, Radical Alliance 13%, Red Movement 12%, Green Directorate 10%, United Soviet 8%, Iron Legion 7%, New League 7%, Red Federation 5%).
+  y40.0 Election: the United Assembly was re-elected (United Assembly 37%, Radical Alliance 13%, Red Movement 12%, Green Directorate 10%, United Soviet 8%, Iron Legion 7%, New League 7%, Red Federation 5%).
+  y41.1 Nell Redton now leads the Green Directorate.
+  y43.4 Juna Ironridge now leads the Radical Alliance.
+  y44.0 Coalition government formed: United Assembly + Green Directorate + United Soviet (United Assembly 37%, Red Movement 13%, Radical Alliance 11%, Green Directorate 9%, Iron Legion 8%, United Soviet 8%, New League 6%, Red Federation 6%, Popular Society 1%).
+  y44.0 Election: the United Assembly was re-elected (United Assembly 37%, Red Movement 13%, Radical Alliance 11%, Green Directorate 9%, Iron Legion 8%, United Soviet 8%, New League 6%, Red Federation 6%, Popular Society 1%).
+  y45.1 Wes Redmore now leads the Green Directorate.
+  y45.6 Hana Fairhill now leads the Green Directorate.
+  y46.5 Brin Dunford now leads the Popular Society.
+  y46.7 Ivo Oakridge now leads the Radical Alliance.
+  y47.6 Finn Whiteby now leads the United Soviet.
+  y47.8 Cyrus Redwell now leads the Radical Alliance.
+  y48.0 Coalition government formed: United Assembly + Green Directorate + Red Movement (United Assembly 32%, Red Movement 13%, Radical Alliance 12%, United Soviet 9%, Green Directorate 9%, Iron Legion 8%, New League 7%, Red Federation 5%, Popular Society 4%).
+  y48.0 Election: the United Assembly was re-elected (United Assembly 32%, Red Movement 13%, Radical Alliance 12%, United Soviet 9%, Green Directorate 9%, Iron Legion 8%, New League 7%, Red Federation 5%, Popular Society 4%).
+  y49.5 The Common Soviet dissolved.
+
+### statesoc seed1 (last political events)
+  y32.9 Election: the Free Front was re-elected (Free Front 63%, Green Vanguard 30%, Liberty Soviet 5%, Free Legion 1%, Free Collective 1%, Popular Society 1%).
+  y33.0 Bram Redwell now leads the Popular Society.
+  y34.6 Lise Blackgate now leads the Liberty Soviet.
+  y34.6 The Popular Society dissolved.
+  y35.1 Sade Longwood now leads the Common Party.
+  y35.9 Ezra Thornton now leads the Common Party.
+  y36.2 Cyrus Redridge now leads the Golden Order.
+  y36.8 The Iron Brotherhood (5 members) joined the Liberty Soviet in consolidation ahead of the election.
+  y36.9 Election: the Free Front was re-elected (Free Front 56%, Green Vanguard 27%, Liberty Soviet 11%, Golden Order 3%, Free Collective 3%).
+  y38.0 Calla Oakwell now leads the Free Legion.
+  y38.8 Silas Ironwood now leads the Free Legion.
+  y40.1 Tobin Longbrook now leads the Free Front.
+  y40.4 Sade Longwood now leads the Common Party.
+  y40.9 Election: the Free Front was re-elected (Free Front 56%, Green Vanguard 26%, Liberty Soviet 11%, Free Collective 5%, Golden Order 2%).
+  y41.0 Wren Hartman now leads the Golden Order.
+  y41.8 Nell Westford founded the Popular Directorate: authoritarian pro-business.
+  y41.8 Vera Blackgate now leads the Golden Order.
+  y42.9 Astrid Fairwood now leads the Liberty Soviet.
+  y43.0 Rhea Stonebrook now leads the Golden Order.
+  y43.3 Bastian Eastwick now leads the Golden Order.
+  y44.9 Election: the Free Front was re-elected (Free Front 47%, Green Vanguard 29%, Liberty Soviet 14%, Free Collective 8%, Golden Order 1%, Red Order 1%).
+  y46.2 The Red Order (26 members) joined the Liberty Soviet in a merger.
+  y47.8 Vera Blackgate now leads the Golden Order.
+  y48.9 Election: the Free Front was re-elected (Free Front 54%, Green Vanguard 26%, Liberty Soviet 19%, Free Collective 2%).
+  y48.9 Quin Stonebrook now leads the Green Vanguard.
+
+### technocracy seed1 (last political events)
+  y2.4 Yann Blackwood now leads the Common Legion.
+  y5.8 Leader Yann Blackwood has died. Cyrus Redridge takes power.
+  y5.8 Cyrus Redridge now leads the Common Legion.
+  y9.2 Dina Thornton founded the United Network: libertarian socialist, progressive.
+  y18.0 Bram Whitewick was arrested for political organising.
+  y21.0 Aren Coldhill now leads the United Network.
+  y21.6 Leader Cyrus Redridge has died. Zev Stonebrook takes power.
+  y21.6 Zev Stonebrook now leads the Common Legion.
+  y30.9 Leader Zev Stonebrook has died. Emory Ironridge takes power.
+  y30.9 Emory Ironridge now leads the Common Legion.
+  y31.9 Leader Emory Ironridge has died. Rhea Thornstead takes power.
+  y31.9 Sade Redstead now leads the Common Legion.
+  y38.1 Lise Dunley founded the Workers' Commune: moderate communist, progressive.
+  y44.4 Rhea Westfield now leads the United Network.
+
+### theocracy seed1 (last political events)
+  y40.4 Guards cracked down on the Iron Brotherhood rally: 3 arrested.
+  y40.6 UPRISING! The Loyalists of Redman rose up against the Crown Commonwealth with 119 fighters.
+  y40.6 REVOLUTION! The House of Coldwood has taken power. A Kingdom is proclaimed under Elin Coldwood.
+  y40.7 The Iron Brotherhood (30 members) joined the Loyalists of Oakwell in a united opposition front.
+  y41.0 The People's Legion rallied 28 supporters in the plaza demanding authoritarian centrist, traditionalist policies.
+  y41.0 Guards cracked down on the People's Legion rally: 4 arrested.
+  y41.1 UPRISING! The Loyalists of Oakwell rose up against the Kingdom with 102 fighters.
+  y41.1 REVOLUTION! The House of Irongate has taken power. A Kingdom is proclaimed under Ivo Irongate.
+  y41.4 The Black Directorate rallied 14 supporters in the plaza demanding authoritarian free-market, traditionalist policies.
+  y41.4 Guards cracked down on the Black Directorate rally: 2 arrested.
+  y41.7 The People's Legion rallied 28 supporters in the plaza demanding authoritarian centrist, traditionalist policies.
+  y41.7 Guards cracked down on the People's Legion rally: 4 arrested.
+  y42.1 The Loyalists of Coldwood rallied 62 supporters in the plaza demanding authoritarian pro-business, traditionalist policies.
+  y42.1 Guards cracked down on the Loyalists of Coldwood rally: 9 arrested.
+  y42.4 The People's Legion rallied 31 supporters in the plaza demanding authoritarian centrist, traditionalist policies.
+  y42.4 Guards cracked down on the People's Legion rally: 5 arrested.
+  y42.8 The Loyalists of Coldwood rallied 57 supporters in the plaza demanding authoritarian pro-business, traditionalist policies.
+  y42.8 Guards cracked down on the Loyalists of Coldwood rally: 9 arrested.
+  y43.4 The People's Legion rallied 37 supporters in the plaza demanding authoritarian centrist, traditionalist policies.
+  y43.4 Guards cracked down on the People's Legion rally: 5 arrested.
+  y44.4 The Loyalists of Coldwood rallied 57 supporters in the plaza demanding authoritarian pro-business, traditionalist policies.
+  y44.4 Guards cracked down on the Loyalists of Coldwood rally: 9 arrested.
+  y45.9 Ivo Thornstead now leads the House of Irongate.
+  y47.5 Ivo Thornstead has died. Yara Westridge is crowned.
+  y47.5 Yara Westridge now leads the House of Irongate.
