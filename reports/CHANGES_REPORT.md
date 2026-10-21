@@ -232,7 +232,46 @@ Verified (`npm run elect -- liberal 7`): d720 produced a 35%–33% result → th
 loser disputed the count, Radical League actually governed four years, then
 Golden Society returned at 47%. Alternation works end-to-end.
 
-## 10. Varied acts of god (`src/sim/interventions.ts`)
+## 10. Economy realism pass (`src/sim/economy.ts`, `src/sim/society.ts`)
+
+Audit of user-reported symptoms — 80% tax with no visible cost, inflation spikes
+that don't hurt, food security pinned at 1.00 — found three root causes, all
+fixed:
+
+- **Instant wage indexation made inflation neutral.** Firm wages were recomputed
+  daily as `output × price × (1 − ownerShare)`, tracking prices with zero lag,
+  so a price spike cost nobody anything. Wages are now **nominally sticky**:
+  `b.wage` lerps toward the market rate (α 0.3 private / 0.25 state), so spikes
+  erode real pay for several days and deflation overpays. Inflation also feeds
+  worker grievance directly above ~12%/mo. Verification: moneyPrinting=1 run
+  drove food prices 2.3→3.9 (+70%) while wages lagged at +19%.
+- **Taxes were a pure transfer.** No behavioural response at any rate — perfect
+  compliance, full effort, unlimited recapitalisation. Now: (a) `productivity`
+  applies a deadweight effort drag above 45% (∼40% output cut at 80%); (b)
+  `pay()` computes statutory-then-evaded tax — evasion rises with the rate,
+  weak enforcement and corruption (capped 60%), and the dodged share stays with
+  the worker as informal income (money conserved, treasury sees a Laffer
+  flattening — the 80%-tax/weak-enforcement run collected ~28% less than the
+  enforced one); (c) owners facing >55% profit tax sometimes refuse to
+  recapitalise (investment strike); (d) squeeze resentment now spreads below
+  the top-40% earners at confiscatory rates, plus a working-agent grievance
+  term above 55%; (e) a "shadow economy thrives" event logs while the black
+  market is large.
+- **Food security was structurally pinned at 1.00.** Households spent up to 85%
+  of cash on food, charity fully covered the poor, and distress loans were
+  unlimited conjured money — so the pantry metric only broke during total
+  market stock-out. Now: food spend-cap 0.85 → 0.62 (rent/debt/fuel compete,
+  so price spikes thin buffers); charity is capped at ~0.7× daily food value
+  per recipient (cushions, doesn't underwrite); distress loans trimmed 8→5/day.
+  Verified: healthy runs now breathe 0.86–1.00 (winter dips); the 80%-tax run
+  bottomed at 0.65 with strikes and declining legitimacy; famine scenarios
+  still crash to 0.22–0.38 and topple regimes.
+
+Diagnostics: `scripts/taxstress.ts` (`npx tsx scripts/taxstress.ts`) compares
+baseline / 80% tax / 80% tax + weak enforcement / monetary expansion /
+hyperinflation / socdem-65% runs.
+
+## 11. Varied acts of god (`src/sim/interventions.ts`)
 
 New player-triggered opinion shocks, each wired to a different ideological axis:
 **Radical Manifesto** (left), **Great Revival** (traditional), **Order Panic**

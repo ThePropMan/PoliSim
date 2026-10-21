@@ -95,6 +95,10 @@ export function productivity(sim: Simulation, a: Agent, b?: Building): number {
   } else if (p.ownership === 'state') {
     motivation *= 0.84 + 0.12 * coll;
   }
+  // Confiscatory taxation crushes effort: workers shirk, moonlight in the shadow
+  // economy, or simply stop caring. Deadweight loss bites above ~45% and gets
+  // severe toward 80%.
+  if (p.taxRate > 0.45) motivation *= 1 - Math.min(0.5, (p.taxRate - 0.45) * 1.15);
   const morale = 0.7 + 0.38 * a.happiness;
   const toolBonus = b ? 0.78 + 0.42 * clamp(b.tools / Math.max(1, b.workers.length * 1.2)) : 1;
   return (0.55 + 0.5 * a.skill + 0.28 * a.education) * (0.55 + 0.45 * a.needs.health) * motivation * morale * toolBonus;
@@ -124,6 +128,10 @@ export function runEconomyDay(sim: Simulation) {
   housing(sim);
   antiTrust(sim);
   updateMacroMetrics(sim);
+
+  if (s.policy.taxRate > 0.6 && s.day % 7 === 0 && sim.rng.chance(0.1)) {
+    sim.log('A shadow economy thrives as crushing taxes drive trade underground.', 'economy');
+  }
 
   if (s.day % 30 === 0 && s.day > 0) {
     s.harvest = clamp(sim.rng.normal(1, 0.13), 0.58, 1.32);
@@ -564,7 +572,9 @@ function marketSupplyChainAndTrade(sim: Simulation) {
     const need = householdFoodNeed(sim, hh);
     const wantFood = Math.max(0, need * bufferDays - hh.food);
     m.demand.food += wantFood;
-    const fRes = buyFromFirms('food', wantFood, hh.money, 0.85);
+    // Households can't throw every coin at the granary — rent, debt, fuel and
+    // tools compete, so price spikes translate into thinner food buffers.
+    const fRes = buyFromFirms('food', wantFood, hh.money, 0.62);
     hh.food += fRes.got; hh.money -= fRes.spent;
 
     const wantGoods = Math.max(0, hh.members.length * GOODS_WANT * 3 - hh.goods);
@@ -659,15 +669,29 @@ function informalEconomy(sim: Simulation) {
     const gift = hh.money * 0.012 * kindness * (0.5 + s.culture.trust);
     hh.money -= gift; pool += gift;
   }
+  // Alms soften hunger but don't erase it — capped per recipient so charity cushions
+  // a bad week rather than fully underwriting a broken economy. Surplus alms go to
+  // the temple/state coffers (money stays conserved).
   const per = pool / poor.length;
-  for (const hh of poor) hh.money += per;
+  const cap = s.market.prices.food * 0.7;
+  let given = 0;
+  for (const hh of poor) {
+    const g = Math.min(per, householdFoodNeed(sim, hh) * cap);
+    hh.money += g; given += g;
+  }
+  s.gov.treasury += pool - given;
 }
 
 function pay(sim: Simulation, a: Agent, gross: number) {
   const s = sim.state;
   // Progressive income tax: effective rate rises with pay relative to the average wage
   const progressivity = clamp(gross / Math.max(1, s.market.avgWage * 2), 0.35, 2.2);
-  const tax = gross * s.policy.taxRate * (0.55 + 0.45 * progressivity);
+  const statutory = s.policy.taxRate * (0.55 + 0.45 * progressivity);
+  // Evasion: nobody fully complies at confiscatory rates. The dodged share rises
+  // with the rate, weak enforcement and corruption — and stays with the worker
+  // as unrecorded informal income, so the treasury sees a Laffer-style flattening.
+  const evasion = clamp(Math.max(0, s.policy.taxRate - 0.45) * (0.35 + (1 - s.policy.enforcement) * 0.9 + s.policy.corruption * 0.5), 0, 0.6);
+  const tax = gross * statutory * (1 - evasion);
   s.gov.treasury += tax;
   const net = gross - tax;
   const hh = sim.household(a.householdId);
@@ -718,14 +742,19 @@ function payMarketIncomes(sim: Simulation) {
 
     if (b.ownerKind === 'private') {
       const owner = sim.household(b.ownerHouseholdId);
-      // Owners Recapitalize their firm if working capital runs low so workers can be paid
+      // Owners recapitalize their firm if working capital runs low so workers can be paid —
+      // but under confiscatory profit taxes they may refuse to throw good money after bad.
       const payrollNeed = Math.max(floor, valuePer * 0.75) * present.length;
-      if (b.cash < payrollNeed && owner && owner.money > payrollNeed * 1.5) {
+      const investStrike = p.taxRate > 0.55 && sim.rng.chance((p.taxRate - 0.55) * 1.8);
+      if (b.cash < payrollNeed && !investStrike && owner && owner.money > payrollNeed * 1.5) {
         const inject = payrollNeed - b.cash + 15;
         owner.money -= inject; b.cash += inject;
       }
       const ownerShare = clamp(0.16 + unemployment * 0.7 - p.wageFloor * 0.15, 0.1, 0.42);
-      b.wage = Math.max(floor, valuePer * (1 - ownerShare));
+      // Nominal wage rigidity: wages chase the market rate instead of leaping to it,
+      // so inflation spikes erode real pay (and deflation overpays) for several days.
+      const targetWage = valuePer * (1 - ownerShare);
+      b.wage = Math.max(floor, lerp(b.wage > 0 ? b.wage : targetWage, targetWage, 0.3));
       for (const a of present) {
         const g = Math.min(b.wage, Math.max(0, b.cash));
         b.cash -= g;
@@ -750,7 +779,8 @@ function payMarketIncomes(sim: Simulation) {
       b.cash -= pool;
     } else {
       s.gov.treasury += b.cash; b.cash = 0;
-      b.wage = Math.max(floor, m.avgWage * (0.6 + 0.4 * (1 - p.wageFloor)) + valuePer * 0.4 * (1 - p.wageFloor));
+      const stateTarget = Math.max(floor, m.avgWage * (0.6 + 0.4 * (1 - p.wageFloor)) + valuePer * 0.4 * (1 - p.wageFloor));
+      b.wage = lerp(b.wage > 0 ? b.wage : stateTarget, stateTarget, 0.25);
       for (const a of present) {
         const g = Math.min(b.wage, Math.max(0, s.gov.treasury));
         s.gov.treasury -= g; pay(sim, a, g); wageSum += g; wageN++;
@@ -771,7 +801,7 @@ function runBankingAndDebt(sim: Simulation) {
     // Distressed households borrow from banks to avoid starvation or eviction
     const needCash = householdFoodNeed(sim, hh) * s.market.prices.food * 1.5;
     if (banks.length > 0 && hh.money < needCash * 0.45 && hh.debt < 35 * hh.members.length) {
-      const loan = Math.min(8, needCash * 0.6);
+        const loan = Math.min(5, needCash * 0.45);
       hh.money += loan;
       hh.debt += loan;
     }

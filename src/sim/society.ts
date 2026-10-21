@@ -179,6 +179,10 @@ export function runSocietyDay(sim: Simulation) {
       unempAnger +
       debtAnger +
       queueAnger +
+      // Confiscatory taxes grind on everyone who works for a wage
+      (p.taxRate > 0.55 && isWorkingJob(a.job) ? (p.taxRate - 0.5) * 0.06 : 0) +
+      // Inflation anger: eroding pay and savings feel like theft even when nominal wages lag
+      (s.market.inflationRate > 0.12 ? Math.min(0.05, (s.market.inflationRate - 0.1) * 0.35) : 0) +
       (freeRiders > 0.14 && isWorkingJob(a.job) ? (freeRiders - 0.14) * 0.028 * a.personality.C : 0) +
       // Excluded identifiers never fully settle: committed opposition supporters nurse a
       // permanent low-grade grievance that feeds parties, protests — and someday uprisings
@@ -266,6 +270,9 @@ function driftBeliefs(
     // consciousness), while the propertied harden into market-and-order conservatism.
     if (giniNow > 0.34 && rank < 0.45) experience -= (giniNow - 0.3) * (0.45 - rank) * 3.0 * (0.6 + c.classConsciousness);
     if (rank > 0.6 && p.taxRate > 0.3) targetEcon += (p.taxRate - 0.25) * 0.5; // high earners resent heavy taxes
+    // Once rates turn confiscatory the squeeze spreads down the ladder: wage earners
+    // whose take-home shrinks blame the taxing state, not just the market order.
+    if (p.taxRate > 0.5 && isWorkingJob(a.job)) experience += (p.taxRate - 0.45) * (0.25 + rank) * 0.9;
     if (s.market.inflationRate > 0.12) experience += 0.2;
     // Welfare dependence breeds support for the welfare state
     if (a.job === 'unemployed' && p.welfare > 0.35) experience -= (p.welfare - 0.3) * 0.3;
