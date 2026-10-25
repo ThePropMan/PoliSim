@@ -488,6 +488,10 @@ function holdElection(sim: Simulation) {
       if (strategic && !(sincere && c.id === nearest.id)) d += Math.min(0.55, Math.max(0, secondShare - (viability.get(c.id) ?? 0)) * strategic);
       d += rng.normal(0, 0.055); // idiosyncratic candidate taste — margins stay human
       d *= 1 - Math.min(0.18, campaignBoost.get(c.id) ?? 0);
+      // Floors win close races, not distant ones: loyalty, incumbency, charisma and
+      // money can discount ideological distance by at most ~45% — a hollow legacy
+      // party cannot buy a voter it no longer fits
+      d = Math.max(d, dist * 0.55);
       if (d < bd) { bd = d; best = c; }
     }
     votes.set(best.id, (votes.get(best.id) ?? 0) + 1);
