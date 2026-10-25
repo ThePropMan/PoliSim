@@ -189,7 +189,7 @@ function updateMembership(sim: Simulation) {
 
 function foundFactions(sim: Simulation) {
   const s = sim.state, rng = sim.rng, p = s.policy;
-  if (s.factions.length >= 10) return;
+  if (s.factions.length >= 14) return;
   for (const a of s.agents) {
     if (a.age < 18 || a.factionId != null || a.jailedUntil > s.day) continue;
     // Founders are disproportionately people with intense convictions
@@ -197,7 +197,11 @@ function foundFactions(sim: Simulation) {
     const dist = beliefDistance(a.beliefs, s.gov.position);
     const engaged = a.grievance > 0.28 || (p.governance === 'democracy' && (dist > 0.55 || intensity(a) > 0.6)) || (dist > 0.75 && a.grievance > 0.14);
     if (!engaged) continue;
-    if (s.factions.some(f => beliefDistance(f.platform, a.beliefs) < 0.45)) continue;
+    // Past the soft cap of 10, only genuinely uncovered ideological ground earns a
+    // slot — otherwise a crowded field of near-clones freezes out new positions
+    const nearestPlatform = Math.min(...s.factions.map(f => beliefDistance(f.platform, a.beliefs)), Infinity);
+    if (nearestPlatform < 0.45) continue;
+    if (s.factions.length >= 10 && nearestPlatform < 0.65) continue;
     if (s.gov.rulingFactionId != null && rng.chance((1 - p.civilLiberty) * p.enforcement * 0.68)) {
       a.jailedUntil = s.day + 18;
       a.grievance = clamp(a.grievance + 0.22);
@@ -208,7 +212,7 @@ function foundFactions(sim: Simulation) {
     const f = newFaction(sim, a, a.beliefs);
     sim.remember(a, `Founded the ${f.name}.`);
     sim.log(`${a.name} founded the ${f.name}${f.underground ? ' (underground)' : ''}: ${describePlatform(f.platform)}.`, 'politics', a.id);
-    if (s.factions.length >= 10) return;
+    if (s.factions.length >= 14) return;
   }
 }
 
@@ -265,7 +269,7 @@ function updateFactions(sim: Simulation) {
         const share = x.n / Math.max(1, adults.length);
         const electable = f.seats > 2 || share > 0.06;
         const zeal = 1 - Math.min(0.55, Math.abs(f.founding.econ) * 0.4 + Math.abs(f.founding.auth) * 0.2);
-        const pull = electable ? Math.min(0.35, share * 2.5) * zeal * 0.02 : 0;
+        const pull = electable ? Math.min(0.35, share * 2.5) * zeal * 0.04 : 0;
         if (pull > 0) {
           f.platform.econ = lerp(f.platform.econ, median.econ, pull);
           f.platform.auth = lerp(f.platform.auth, median.auth, pull);
@@ -397,13 +401,24 @@ function holdElection(sim: Simulation) {
   const projTotal = s.gov.parliament.reduce((t, x) => t + x.seats, 0);
   const pid = new Map<number, number>();
   for (const a of adults) if (a.votedFor != null) pid.set(a.votedFor, (pid.get(a.votedFor) ?? 0) + 1);
+  // Sympathy: a party that is the closest option for a real bloc of voters looks
+  // viable even before it has ever won votes — without this, viability derived
+  // only from past results makes the top-2 permanent.
+  const nearestCount = new Map<number, number>();
+  for (const a of adults) {
+    let nb = candidates[0], nd = Infinity;
+    for (const c of candidates) { const dd = beliefDistance(a.beliefs, c.platform); if (dd < nd) { nd = dd; nb = c; } }
+    nearestCount.set(nb.id, (nearestCount.get(nb.id) ?? 0) + 1);
+  }
   // Viability = who looks like they can win. Past votes and seats count — but so do
-  // organic strength (membership rolls, street power). A hollow incumbent with no
-  // members left can't hide behind last cycle's result; a mass insurgency doesn't
-  // need a seat to look like it could take one.
+  // organic strength (membership rolls, street power) and ideological demand
+  // (sympathy). A hollow incumbent with no members left can't hide behind last
+  // cycle's result; a mass insurgency doesn't need a seat to look like it could
+  // take one.
   const viability = new Map<number, number>(candidates.map((c): [number, number] => [c.id, Math.max(
     projTotal > 0 ? (s.gov.parliament.find(x => x.factionId === c.id)?.seats ?? 0) / projTotal * 0.35 : 0,
     (pid.get(c.id) ?? 0) / Math.max(1, adults.length),
+    ((nearestCount.get(c.id) ?? 0) / Math.max(1, adults.length)) * 0.8,
     (c.members / Math.max(1, adults.length)) * 0.9,
     (c.strength / Math.max(1, adults.length)) * 1.5)]));
   const shares = [...viability.values()].sort((a, b) => b - a);
@@ -414,6 +429,7 @@ function holdElection(sim: Simulation) {
   // food, safety, jobs, inflation, queues — not just ideological proximity
   const unempRate = adults.filter(a => a.job === 'unemployed').length / Math.max(1, adults.length);
   const inflation = Math.max(0, s.market.inflationRate);
+  const giniNow = s.stats.at(-1)?.gini ?? 0;
   const queueBurden = Math.min(1, s.plan.queueHours / 3);
   // "Are you better off than you were?" — voters also punish *declining* conditions
   // even when the absolute level remains tolerable
@@ -434,11 +450,23 @@ function holdElection(sim: Simulation) {
     if (a.jailedUntil > s.day || !rng.chance(0.46 + Math.abs(a.approval - 0.5) + a.personality.C * 0.2 + a.grievance * 0.18)) continue;
     // Pocketbook score: personal wellbeing plus shared economic conditions.
     // Bad times punish every party in government, even ideologically aligned ones.
+    // The absolute-wellbeing and inequality terms keep chronic misery legible —
+    // adaptive expectations alone normalise a permanently bad status quo to zero.
     const pocketbook = clamp(
-      (a.happiness - expectH) * 0.9 + Math.min(0, a.needs.food - 0.7) * 0.8 + Math.min(0, a.needs.safety - 0.7) * 0.4
+      (a.happiness - expectH) * 0.9 + (a.happiness - 0.62) * 0.5
+      + Math.min(0, a.needs.food - 0.7) * 0.8 + Math.min(0, a.needs.safety - 0.7) * 0.4
       + (a.job === 'unemployed' ? -0.3 : 0)
+      - Math.max(0, giniNow - 0.5) * 0.35
       - inflation * 0.5 - unempRate * 0.25 - queueBurden * 0.25,
       -0.6, 0.6);
+    let nearest = candidates[0], nearestD = Infinity;
+    for (const c of candidates) { const dd = beliefDistance(a.beliefs, c.platform); if (dd < nearestD) { nearestD = dd; nearest = c; } }
+    // A slice of every electorate votes sincerely for its true favourite rather
+    // than tactically for a viable one — otherwise the top-2 penalty strangles
+    // every insurgent before it can accumulate votes of its own. Sincerity only
+    // binds when the favourite is genuinely close — nobody dies on a hill they
+    // don't stand on.
+    const sincere = nearestD < 0.6 && rng.chance(0.25);
     let best = candidates[0], bd = Infinity;
     for (const c of candidates) {
       const dist = beliefDistance(a.beliefs, c.platform);
@@ -457,7 +485,7 @@ function holdElection(sim: Simulation) {
       // Candidate quality: a compelling leader wins votes the platform alone wouldn't
       const cand = sim.agent(c.leaderId) ?? sim.agent(c.founderId);
       if (cand) d -= 0.1 * (cand.personality.E * 0.7 + cand.skill * 0.3);
-      if (strategic) d += Math.min(0.55, Math.max(0, secondShare - (viability.get(c.id) ?? 0)) * strategic);
+      if (strategic && !(sincere && c.id === nearest.id)) d += Math.min(0.55, Math.max(0, secondShare - (viability.get(c.id) ?? 0)) * strategic);
       d += rng.normal(0, 0.055); // idiosyncratic candidate taste — margins stay human
       d *= 1 - Math.min(0.18, campaignBoost.get(c.id) ?? 0);
       if (d < bd) { bd = d; best = c; }
@@ -521,7 +549,9 @@ function holdElection(sim: Simulation) {
   // Disputed count: knife-edge results breed "stolen election" cries — the loser
   // and their supporters stay angry, and the poison lingers into the next cycle
   const sorted0 = [...votes.entries()].sort((a, b) => b[1] - a[1]);
-  if (sorted0.length > 1 && (sorted0[0][1] - sorted0[1][1]) / turnout < 0.04) {
+  // Two-party races routinely finish within a few points, so the cry needs a real
+  // knife-edge — and even then only sometimes lands — to stay meaningful.
+  if (sorted0.length > 1 && (sorted0[0][1] - sorted0[1][1]) / turnout < 0.02 && rng.chance(0.6)) {
     const loser = sim.faction(sorted0[1][0]);
     if (loser && loser.id !== winner.id) {
       loser.anger = clamp(loser.anger + 0.2);
@@ -836,8 +866,10 @@ function checkSplinters(sim: Simulation) {
  */
 function checkMergers(sim: Simulation) {
   const s = sim.state, p = s.policy;
-  // Mergers are rare, deliberate events: at most one per ~1.5 years
-  if (s.factions.length < 4 || s.day - (s.gov.lastMerge ?? -999) < 45 || !sim.rng.chance(0.02)) return;
+  // Mergers are rare, deliberate events: at most one per ~1.5 years — but a field
+  // crowded near the faction cap consolidates faster so new positions can emerge
+  if (s.factions.length < 4 || s.day - (s.gov.lastMerge ?? -999) < 45) return;
+  if (!sim.rng.chance(s.factions.length >= 8 ? 0.08 : 0.02)) return;
   const adults = Math.max(1, sim.adults().length);
   const fptpSoon = p.governance === 'democracy' && p.electoralSystem !== 'pr' &&
     s.gov.lastElection + p.electionYears * DAYS_PER_YEAR - s.day < DAYS_PER_YEAR;
@@ -860,6 +892,8 @@ function checkMergers(sim: Simulation) {
       // Only genuinely marginal parties are pushed to merge
       const small = Math.min(a.members, b.members) / adults < 0.03;
       let threshold = 0.2 + (small ? 0.06 : 0) + (fptpSoon && small ? 0.06 : 0);
+      // A crowded field tolerates looser pairings between marginal same-side parties
+      if (small && s.factions.length >= 9) threshold += 0.15;
       if (front) threshold += 0.25;
       if (dist > threshold) continue;
       const score = threshold - dist;
